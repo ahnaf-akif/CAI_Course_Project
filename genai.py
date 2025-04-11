@@ -15,22 +15,22 @@ model = genai.GenerativeModel(
   model_name="gemini-1.5-flash-latest"
 )
 
-def genai_analysis(filename):
+#def genai_analysis(filename):
 
-  file = upload_to_gemini(filename, mime_type="audio/wav")
+  #file = upload_to_gemini(filename, mime_type="audio/wav")
 
-  prompt = """
-  Please provide a transcript for this audio and do sentiment analysis. 
-  Return result should follow the below format: 
+  #prompt = """
+  #Please provide a transcript for this audio and do sentiment analysis. 
+  #Return result should follow the below format: 
   
-  TEXT: User's speech transcript
-  Sentiment: Positive | Negative | Neutral
-  """
+  #TEXT: User's speech transcript
+  #Sentiment: Positive | Negative | Neutral
+  #"""
 
   # result = model.generate_content([file, "Please provide a transcript for this audio and do sentiment analysis. Return result as json file. example: 'text': '<transcript of the audio>, 'sentiment': <positive or negative or neurtal> "])
-  result = model.generate_content([file, prompt])
-  print(f"{result.text}")
+  #result = model.generate_content([file, prompt])
+  #print(f"{result.text}")
 
-  f = open(filename + '_transcript_with_sentiment.txt','w')
-  f.write(result.text)
-  f.close()
+  #f = open(filename + '_transcript_with_sentiment.txt','w')
+  #f.write(result.text)
+  #f.close()
