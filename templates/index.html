@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversational PDF Assistant</title>
+    <style>
+    #header {
+        position: absolute;
+        width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <p style="text-align: center;">Application Created By Md Ahnaf Akif. Z Number: Z23689182. Email: <i>makif2022@fau.edu</i></p>
+    </div>
+    <br>
+    <br>
+    <table style="width:100%">
+        <tr>
+            <td style="width:50%">
+                <h2>Upload a PDF Book</h2>
+                <form action="/upload_pdf" method="post" enctype="multipart/form-data">
+                    <input type="file" name="pdf" accept=".pdf" required />
+                    <input type="submit" value="Upload PDF">
+                </form>
+                {% if active_pdf %}
+                <p><strong>Active Book:</strong> {{ active_pdf }}</p>
+                {% endif %}
+
+                <hr>
+
+                <h2>Record and Ask a Question</h2>
+                <button id="record">Record</button>
+                <button id="stop">Stop</button>
+                <span id="timer">00:00</span>
+                <audio id="audio" controls></audio>
+
+                <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="audio_data" id="audioData">
+                </form>
+
+                <hr>
+                <h2>Questions</h2>
+                <ul>
+                    {% for file in files %}
+                    <li> 
+                        <audio controls>
+                            <source src="{{ url_for('uploaded_file', filename=file) }}">
+                            Your browser does not support the audio element.
+                        </audio><br>
+                        
+                        <p><strong>Audio File:</strong> <a href="uploads/{{file}}">{{file}}</a></p>
+                        <p><strong>Text File:</strong> <a href="uploads/{{file}}.txt">{{file}}.txt</a></p>
+                        <!-- <p><strong>Sentiment File:</strong> <a href="uploads/{{file}}_sentiment.txt">{{file}}_sentiment.txt</a></p> -->
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <hr>
+                <h2>Responses</h2>
+                <ul>
+                    {% for audio, text in responses %}
+                    <li>
+                        <p><strong>Audio:</strong> <a href="responses/{{audio}}">{{audio}}</a></p>
+                        
+                        <p><strong>Text:</strong><a href="responses/{{text}}">{{ text }}</a></p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </td>
+
+            <!-- <td style="width:50%" valign="top">
+                <h2>Type Text to Generate Audio</h2>
+                <form action="/upload_text" method="post">
+                    <textarea name="text" rows="10" cols="50" style="width: 70%"></textarea>
+                    <br>
+                    <input type="submit" value="Generate Audio">
+                </form>
+            </td> -->
+        </tr>
+    </table>
+    
+    <script src="script.js"></script>
+</body>
+</html>

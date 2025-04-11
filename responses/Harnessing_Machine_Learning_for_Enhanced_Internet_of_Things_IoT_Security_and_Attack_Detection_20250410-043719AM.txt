@@ -1,0 +1,1 @@
+Based on the provided text, the best model in this paper is XGBoost.  It achieved near-perfect results (accuracy, precision, recall, and F1-score close to 1.00) and a ROC curve AUC value of 1.00, outperforming the other models (ANN, RF, and CNN).
