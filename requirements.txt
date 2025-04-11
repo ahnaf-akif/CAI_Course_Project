@@ -1,0 +1,10 @@
+PyMuPDF==1.25.5
+protobuf==4.25.1
+gunicorn==22.0.0
+
+Flask==3.0.3
+google-cloud-speech==2.27.0
+google-cloud-texttospeech==2.17.2
+gunicorn==22.0.0
+google-cloud-language==2.16.0
+google-generativeai==0.8.4
